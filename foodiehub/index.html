@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍔 FoodieHub - Online Food Ordering</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #ff6f61;
+      color: white;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    header img.logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    header span {
+      color: #ffe082;
+    }
+
+    main.container {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .quotes {
+      font-style: italic;
+      color: #6d4c41;
+      margin: 10px 0 30px;
+      font-size: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 14px 30px;
+      background-color: #ff6f61;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e65100;
+    }
+
+    /* Admin icon link styles */
+    .admin-icon {
+      position: absolute;
+      top: 30px;
+      right: 20px;
+      font-size: 24px;
+      color: white; /* White color for the icon */
+      text-decoration: none;
+    }
+
+    .admin-icon:hover {
+      color: white; 
+    }
+
+    footer {
+      background-color: #fbe9e7;
+      padding: 15px;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <img src="assets/logo.png" alt="FoodieHub Logo" class="logo">
+      <h1>🍔 Welcome to FoodieHub</h1>
+      <p>Your favorite food, delivered fast 🍕</p>
+    </div>
+    <!-- Admin Icon Link placed in the header -->
+    <a href="admin/login.php" class="admin-icon">👑 Admin</a>
+  </header>
+
+  <main class="container">
+    <div class="quotes">"Good food is good mood." 🍜</div>
+    <div class="quotes">"There is no sincerer love than the love of food." – George Bernard Shaw</div>
+
+    <h2>Explore Our Menu</h2>
+    <a href="menu.html" class="btn">🍽️ View Menu</a>
+    <a href="cart.html" class="btn">🛒 Go to Cart</a>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FoodieHub. Made with ❤️ for foodies like you.</p>
+  </footer>
+</body>
+</html>

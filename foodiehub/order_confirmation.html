@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🍔 FoodieHub - Order Confirmation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff8f0;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #ff6f61;
+      color: white;
+      padding: 25px 0;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #ff6f61;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      margin: 0 10px;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    .btn:hover {
+      background-color: #e65100;
+    }
+
+    .confirmation {
+      background: #fff;
+      display: inline-block;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      max-width: 500px;
+      margin: 40px auto;
+      text-align: left;
+    }
+
+    h2 {
+      color: #43a047;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .order-info p {
+      margin: 8px 0;
+      font-size: 16px;
+    }
+
+    .home-link {
+      margin-top: 20px;
+      text-align: center;
+      display: block;
+      font-size: 14px;
+    }
+
+    .home-link a {
+      text-decoration: none;
+      color: white;
+      background-color: #ff6f61;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .home-link a:hover {
+      background-color: #e65100;
+    }
+
+    footer {
+      background-color: #fbe9e7;
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #555;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🍔 FoodieHub - Order Confirmation</h1>
+  </header>
+
+  <main>
+    <div class="confirmation">
+      <h2>Order placed successfully!</h2>
+      <div class="order-info" id="order-details">
+        <!-- Dynamic content here -->
+      </div>
+      <!-- Updated Export Button -->
+      <button class="btn" id="export-json" style="font-size: 18px; padding: 12px 24px;">Download Order Summary</button>
+      <div class="home-link">
+        <a href="index.html">← Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FoodieHub. Made with ❤️</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const orderId = params.get('order_id');
+    const orderItems = localStorage.getItem('last_order_items');
+    const totalPrice = localStorage.getItem('last_order_total');
+    const deliveryFee = localStorage.getItem('last_order_delivery');
+    const gst = localStorage.getItem('last_order_gst');
+    const finalAmount = localStorage.getItem('last_order_final');
+
+    const details = document.getElementById('order-details');
+
+    if (orderId && orderItems && totalPrice && gst && finalAmount) {
+      details.innerHTML = `
+        <p><strong>Order ID:</strong> #${orderId}</p>
+        <p><strong>Items:</strong> ${orderItems}</p>
+        <p><strong>Total Price:</strong> ₹${parseFloat(totalPrice).toFixed(2)}</p>
+        <p><strong>Delivery Fee:</strong> ₹${parseFloat(deliveryFee).toFixed(2)}</p>
+        <p><strong>GST (15%):</strong> ₹${parseFloat(gst).toFixed(2)}</p>
+        <p><strong>Final Amount:</strong> ₹${parseFloat(finalAmount).toFixed(2)}</p>
+      `;
+    } else {
+      details.innerHTML = `<p>Order details not found.</p>`;
+    }
+
+    // Remove order details from localStorage
+    localStorage.removeItem('last_order_items');
+    localStorage.removeItem('last_order_total');
+    localStorage.removeItem('last_order_delivery');
+    localStorage.removeItem('last_order_gst');
+    localStorage.removeItem('last_order_final');
+
+    // JSON Export Functionality
+    document.getElementById('export-json').addEventListener('click', function() {
+      const orderData = {
+        orderId: orderId,
+        items: orderItems,
+        totalPrice: parseFloat(totalPrice),
+        deliveryFee: parseFloat(deliveryFee),
+        gst: parseFloat(gst),
+        finalAmount: parseFloat(finalAmount)
+      };
+
+      const jsonBlob = new Blob([JSON.stringify(orderData, null, 2)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(jsonBlob);
+      link.download = `order_${orderId}.json`;
+      link.click();
+    });
+  </script>
+
+</body>
+</html>
