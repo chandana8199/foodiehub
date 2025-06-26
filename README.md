@@ -40,13 +40,7 @@ export_order_json.php: Exports orders in JSON format (possibly for analysis or b
 
 fetch_order_statuses.php: Retrieves current order statuses via AJAX.
 
-🖼️ Assets
-assets/logo.png: Project logo used in frontend and possibly admin UI.
 
-📦 Database (Expected Structure)
-Not explicitly given, but based on the code:
-
-menu table (for food items)
 
 orders table (for storing customer orders)
 
